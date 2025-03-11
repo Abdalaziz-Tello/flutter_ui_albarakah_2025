@@ -1,9 +1,9 @@
-import 'package:controller_in_flutter/main.dart';
+
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key, required this.onTT});
-  int counter = 0;
+ final int counter = 0;
   Function onTT;
 
   @override

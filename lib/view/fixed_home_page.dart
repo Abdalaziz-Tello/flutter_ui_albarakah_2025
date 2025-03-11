@@ -30,14 +30,12 @@ class FixedHomePage extends StatelessWidget {
               ],
             ),
           ),
-          SmoothPageIndicator(    
-   controller: controller,  // PageController    
-   count:  2,    
-   effect:  WormEffect(),  // your preferred effect    
-   onDotClicked: (index){    
-  }
-)    
-,
+          SmoothPageIndicator(
+            controller: controller, // PageController
+            count: 2,
+            effect: WormEffect(), // your preferred effect
+            onDotClicked: (index) {},
+          ),
           InkWell(
             onTap: () {
               controller.nextPage(

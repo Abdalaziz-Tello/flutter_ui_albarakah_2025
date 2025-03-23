@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app_full_function/model/quiz_model.dart';
 import 'package:quiz_app_full_function/service/quiz_service.dart';
+import 'package:quiz_app_full_function/view/tabs_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -11,7 +12,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: QuizPage());
+    return MaterialApp(home: TabsPage());
   }
 }
 
@@ -82,11 +83,7 @@ class QuizPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: CircularProgressIndicator(
-          value: 0.5,
-        ),
-      ),
+      appBar: AppBar(title: CircularProgressIndicator(value: 0.5)),
       body: FutureBuilder(
         future: QuizService().getAllQuiz(),
         builder: (context, snapshot) {
@@ -358,7 +355,7 @@ class AddQuizPage extends StatelessWidget {
             ),
             // this is a container like button with good decoration
             InkWell(
-              onTap: () {
+              onTap: () async {
                 List<Options> options = [];
                 if (int.parse(indexOfCorrect.text) >= 0 &&
                     int.parse(indexOfCorrect.text) < 4) {
@@ -378,7 +375,23 @@ class AddQuizPage extends StatelessWidget {
                   quistionText: question.text,
                   options: options,
                 );
-                QuizService().createNewQuiz(quiz);
+                bool status = await QuizService().createNewQuiz(quiz);
+                if (status) {
+                  ScaffoldMessenger.of(
+                    context,
+                  ).showSnackBar(SnackBar(content: Text("Yes")));
+                } else {
+                  ScaffoldMessenger.of(
+                    context,
+                  ).showSnackBar(SnackBar(content: Text("Nooo")));
+                }
+                // ! : I will never see you
+                // try {
+                // } catch (e) {
+                //   ScaffoldMessenger.of(
+                //     context,
+                //   ).showSnackBar(SnackBar(content: Text("Nooo")));
+                // }
               },
               child: Container(
                 decoration: BoxDecoration(

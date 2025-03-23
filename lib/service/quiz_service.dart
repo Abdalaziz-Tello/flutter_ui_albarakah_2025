@@ -31,13 +31,22 @@ class QuizService {
     }
   }
 
-  createNewQuiz(QuizModel quiz) async {
+  Future<bool> createNewQuiz(QuizModel quiz) async {
     try {
       print(quiz.toMap());
+      // throw Exception();
       response = await dio.post(baseUrl, data: quiz.toMap());
       print(response.data);
+      return true;
     } catch (e) {
-      print(e);
+
+      //  TODO : see you later
+      // if (e.runtimeType is DioException) {
+      //   return false;
+      // } else {
+      //   return null;
+      // }
+      rethrow;
     }
   }
 }

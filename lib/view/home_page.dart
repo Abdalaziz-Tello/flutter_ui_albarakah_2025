@@ -7,11 +7,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Center(child: Container(
-        decoration:  BoxDecoration(
-          border: Border.all(style: BorderStyle.none)
-        ),
-      )),
+      // ! HAHAHAH I delete the border 
     );
   }
 }

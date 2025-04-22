@@ -1,4 +1,6 @@
-class FavModel {
+import 'package:equatable/equatable.dart';
+
+class FavModel  extends Equatable{
   String name;
   int count;
   String image;
@@ -19,5 +21,8 @@ toMap(){
 static fromMap(Map<String,dynamic> map){
   return FavModel(count: map['count'], image:map['image'], isFav: map['isFav'], name: map['name']);
 }
+
+  @override
+  List<Object?> get props => [name,count,image,isFav];
   
 }
